@@ -1,13 +1,22 @@
+
+body{
+  background-image: url("./assets/background.png");
+  background-size: 150%;
+}
+
 .App {
   text-align: center;
+
 }
 
 h1 {
   text-align: center;
+  color: azure;
 }
 
 .header {
   text-align: center;
+  color: azure;
 }
 
 .header label{
@@ -19,26 +28,52 @@ h1 {
 }
 
 .gameButton {
-  width: 400px;
-  margin: 5px;
-
+  width: 600px;
+  margin: 5px auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 20px;
   justify-items: center;
-  margin-top: 20px;
 }
 
 .gameButton button{
-  width: 150px;
+  background: transparent;
+  border: none;
   height: 150px;
-  border-radius: 100px;
 }
 
 .gameButton button:hover{
   background-color: aqua;
+
 }
 
+.nuage{
+  background-image: url("./assets/nuage.png");
+  background-size: contain;
+  width: 200px;
+  height: 200px;
+  transform: translateY(-150px);
+  }
+
+.mylou{
+  background-image: url("./assets/mylou_diable.png");
+  background-size: contain;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+@keyframes apparition {
+  0%{
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
 
 .link {

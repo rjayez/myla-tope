@@ -72,31 +72,49 @@ const App: Component = () => {
             </div>
             <div class={styles.gameButton}>
                 <button classList={{buttonActive: buttonState()[0]}}
-                        onClick={() => handleGameButton(buttonState()[0])}>1
+                        onClick={() => handleGameButton(buttonState()[0])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[1]}}
-                        onClick={() => handleGameButton(buttonState()[1])}>2
+                        onClick={() => handleGameButton(buttonState()[1])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[2]}}
-                        onClick={() => handleGameButton(buttonState()[2])}>3
+                        onClick={() => handleGameButton(buttonState()[2])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[3]}}
-                        onClick={() => handleGameButton(buttonState()[3])}>4
+                        onClick={() => handleGameButton(buttonState()[3])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[4]}}
-                        onClick={() => handleGameButton(buttonState()[4])}>5
+                        onClick={() => handleGameButton(buttonState()[4])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[5]}}
-                        onClick={() => handleGameButton(buttonState()[5])}>6
+                        onClick={() => handleGameButton(buttonState()[5])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[6]}}
-                        onClick={() => handleGameButton(buttonState()[6])}>7
+                        onClick={() => handleGameButton(buttonState()[6])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[7]}}
-                        onClick={() => handleGameButton(buttonState()[7])}>8
+                        onClick={() => handleGameButton(buttonState()[7])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
                 <button classList={{buttonActive: buttonState()[8]}}
-                        onClick={() => handleGameButton(buttonState()[8])}>9
+                        onClick={() => handleGameButton(buttonState()[8])}>
+                    <div class={styles.mylou}/>
+                    <div class={styles.nuage}/>
                 </button>
             </div>
         </>
