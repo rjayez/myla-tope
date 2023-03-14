@@ -9,7 +9,6 @@
     background-color: aqua;
 }
 
-
 .nuage{
     background-image: url("./assets/nuage.png");
     background-size: contain;
@@ -24,16 +23,4 @@
     width: 150px;
     height: 150px;
     margin: 0 auto;
-}
-
-@keyframes apparition {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(50px);
-    }
-    100% {
-        transform: translateY(0);
-    }
 }
