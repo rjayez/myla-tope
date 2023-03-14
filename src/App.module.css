@@ -27,7 +27,7 @@ h1 {
   margin: 0 10px;
 }
 
-.gameButton {
+.grid {
   width: 600px;
   margin: 5px auto;
   display: grid;
@@ -36,44 +36,10 @@ h1 {
   justify-items: center;
 }
 
-.gameButton button{
-  background: transparent;
-  border: none;
-  height: 150px;
-}
 
-.gameButton button:hover{
-  background-color: aqua;
 
-}
 
-.nuage{
-  background-image: url("./assets/nuage.png");
-  background-size: contain;
-  width: 200px;
-  height: 200px;
-  transform: translateY(-150px);
-  }
 
-.mylou{
-  background-image: url("./assets/mylou_diable.png");
-  background-size: contain;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-}
-
-@keyframes apparition {
-  0%{
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(50px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 
 
 .link {

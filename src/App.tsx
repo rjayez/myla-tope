@@ -1,6 +1,7 @@
 import type {Component, Signal} from 'solid-js';
 import {createEffect, createSignal, onCleanup} from "solid-js";
 import styles from './App.module.css';
+import {GameButton} from "./GameButton";
 
 const defaultButtonState = [
     false,
@@ -70,52 +71,16 @@ const App: Component = () => {
 
                 </header>
             </div>
-            <div class={styles.gameButton}>
-                <button classList={{buttonActive: buttonState()[0]}}
-                        onClick={() => handleGameButton(buttonState()[0])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[1]}}
-                        onClick={() => handleGameButton(buttonState()[1])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[2]}}
-                        onClick={() => handleGameButton(buttonState()[2])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[3]}}
-                        onClick={() => handleGameButton(buttonState()[3])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[4]}}
-                        onClick={() => handleGameButton(buttonState()[4])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[5]}}
-                        onClick={() => handleGameButton(buttonState()[5])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[6]}}
-                        onClick={() => handleGameButton(buttonState()[6])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[7]}}
-                        onClick={() => handleGameButton(buttonState()[7])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
-                <button classList={{buttonActive: buttonState()[8]}}
-                        onClick={() => handleGameButton(buttonState()[8])}>
-                    <div class={styles.mylou}/>
-                    <div class={styles.nuage}/>
-                </button>
+            <div class={styles.grid}>
+                <GameButton active={buttonState()[0]} onClick={() => handleGameButton(buttonState()[0])}/>
+                <GameButton active={buttonState()[1]} onClick={() => handleGameButton(buttonState()[1])}/>
+                <GameButton active={buttonState()[2]} onClick={() => handleGameButton(buttonState()[2])}/>
+                <GameButton active={buttonState()[3]} onClick={() => handleGameButton(buttonState()[3])}/>
+                <GameButton active={buttonState()[4]} onClick={() => handleGameButton(buttonState()[4])}/>
+                <GameButton active={buttonState()[5]} onClick={() => handleGameButton(buttonState()[5])}/>
+                <GameButton active={buttonState()[6]} onClick={() => handleGameButton(buttonState()[6])}/>
+                <GameButton active={buttonState()[7]} onClick={() => handleGameButton(buttonState()[7])}/>
+                <GameButton active={buttonState()[8]} onClick={() => handleGameButton(buttonState()[8])}/>
             </div>
         </>
     );
