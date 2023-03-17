@@ -15,6 +15,8 @@ const defaultButtonState = [
     false
 ];
 
+const GAME_TIME_SECONDS = 30;
+
 const App: Component = () => {
     const [gameActive, setGameActive]: Signal<boolean> = createSignal(false);
     const [score, setScore]: Signal<number> = createSignal(0);
@@ -22,16 +24,6 @@ const App: Component = () => {
     const [gameInterval, setGameInterval]: Signal<number> = createSignal(0);
 
     const [buttonState, setButtonState]: Signal<boolean[]> = createSignal(defaultButtonState);
-
-    function mylouAppear() {
-        if (gameActive()) {
-            let random = Math.floor(Math.random() * 9);
-            console.info(random);
-            const newButtonState = [...defaultButtonState];
-            newButtonState[random] = true;
-            setButtonState(newButtonState);
-        }
-    }
 
     function handleJouerButton () {
 
@@ -46,19 +38,37 @@ const App: Component = () => {
     }
 
     function launchGame(){
+
+        const randomDuration = Math.floor((Math.random() * 1000) + 500);
+        showUpMylou();
+
         return setInterval(() => {
             setTimer(timer() + 1);
-            mylouPopTimer();
+            setTimeout(() => {
+                showUpMylou();
+            }, randomDuration);
         }, 1000);
     }
 
-    let mylouPopTimer = () => {
-        const randomDuration = Math.floor((Math.random() * 1000) + 500);
+    function showUpMylou() {
         if (gameActive()){
+            let randomMylou = Math.floor(Math.random() * 9);
+            mylouAppear(randomMylou);
             setTimeout(() => {
-                mylouAppear();
-            }, randomDuration);
+                updateButtonState(false, randomMylou);
+            }, 2000);
+        }
+    }
 
+    function updateButtonState(active:boolean, buttonIndex:number){
+        const tempButtonState= [...buttonState()];
+        tempButtonState[buttonIndex] = active;
+        setButtonState(tempButtonState);
+    }
+
+    function mylouAppear(randomNumber:number) {
+        if (gameActive()) {
+            updateButtonState(true, randomNumber);
         }
     }
 
@@ -67,7 +77,7 @@ const App: Component = () => {
     });
 
     createEffect(() => {
-        if (timer() > 60) {
+        if (timer() > GAME_TIME_SECONDS) {
             // Fin du jeu
             setGameActive(false);
             setButtonState(defaultButtonState);
@@ -80,7 +90,7 @@ const App: Component = () => {
     const handleGameButton = (active: boolean, buttonIndex:number) => {
         if (gameActive() && active) {
             setScore(score() + 1);
-            setButtonState(defaultButtonState);
+            updateButtonState(false, buttonIndex);
         }
     };
     const resetGame = () => {
