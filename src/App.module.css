@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
+  @apply bg-fixed bg-auto;
   background-image: url("./assets/background.png");
-  background-size: 150%;
 }
 
