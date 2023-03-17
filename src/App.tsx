@@ -60,9 +60,9 @@ const App: Component = () => {
 
     return (
         <>
-            <div>
-                <h1>Myla-Tope</h1>
-                <header class={styles.header}>
+            <>
+                <h1 class=" text-3xl lg:text-6xl text-center m-6 font-bold text-blue-100">Myla-Tope</h1>
+                <header class="text-center text-gray-200 space-x-2 text-xl">
                     <button onClick={() => setGameActive(!gameActive())}>Jouer</button>
                     <button onClick={resetGame}>Reset</button>
 
@@ -70,8 +70,8 @@ const App: Component = () => {
                     <label>Temps : {timer()}</label>
 
                 </header>
-            </div>
-            <div class={styles.grid}>
+            </>
+            <div class="grid grid-cols-3 w-[310px] md:w-[700px]  mx-auto gap-4 mt-10 md:mt-20 p-2" style={styles.grid}>
                 <GameButton active={buttonState()[0]} onClick={() => handleGameButton(buttonState()[0])}/>
                 <GameButton active={buttonState()[1]} onClick={() => handleGameButton(buttonState()[1])}/>
                 <GameButton active={buttonState()[2]} onClick={() => handleGameButton(buttonState()[2])}/>
