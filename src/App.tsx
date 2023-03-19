@@ -25,9 +25,9 @@ const App: Component = () => {
 
     const [buttonState, setButtonState]: Signal<boolean[]> = createSignal(defaultButtonState);
 
-    function handleJouerButton () {
+    function handleJouerButton() {
 
-        if (!gameActive()){
+        if (!gameActive()) {
             setGameActive(true);
             let gameInterval = launchGame();
             setGameInterval(gameInterval);
@@ -37,7 +37,7 @@ const App: Component = () => {
         }
     }
 
-    function launchGame(){
+    function launchGame() {
 
         const randomDuration = Math.floor((Math.random() * 1000) + 500);
         showUpMylou();
@@ -47,12 +47,12 @@ const App: Component = () => {
             setTimeout(() => {
                 showUpMylou();
             }, randomDuration);
-        }, 1000);
+        }, 800);
     }
 
     function showUpMylou() {
-        if (gameActive()){
-            let randomMylou = Math.floor(Math.random() * 9);
+        let randomMylou = Math.floor(Math.random() * 9);
+        if (gameActive() && !buttonState()[randomMylou]) {
             mylouAppear(randomMylou);
             setTimeout(() => {
                 updateButtonState(false, randomMylou);
@@ -60,13 +60,13 @@ const App: Component = () => {
         }
     }
 
-    function updateButtonState(active:boolean, buttonIndex:number){
-        const tempButtonState= [...buttonState()];
+    function updateButtonState(active: boolean, buttonIndex: number) {
+        const tempButtonState = [...buttonState()];
         tempButtonState[buttonIndex] = active;
         setButtonState(tempButtonState);
     }
 
-    function mylouAppear(randomNumber:number) {
+    function mylouAppear(randomNumber: number) {
         if (gameActive()) {
             updateButtonState(true, randomNumber);
         }
@@ -87,7 +87,7 @@ const App: Component = () => {
     });
 
 
-    const handleGameButton = (active: boolean, buttonIndex:number) => {
+    const handleGameButton = (active: boolean, buttonIndex: number) => {
         if (gameActive() && active) {
             setScore(score() + 1);
             updateButtonState(false, buttonIndex);
