@@ -4,37 +4,55 @@
 @tailwind screens;
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    @apply bg-fixed bg-auto;
+    background-image: url("./assets/background.png");
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.buttonActive {
-  background-color: aquamarine;
-}
-
-.mylouActive{
-  animation-name: apparition;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-}
 
 @keyframes apparition {
-  from {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-60px);
-  }
-  to {
-    transform: translateY(0);
-  }
+    from {
+        @apply top-7;
+    }
+    50% {
+        @apply -top-6;
+    }
+    to {
+        @apply top-7;
+    }
 }
+
+@keyframes apparitionDesktop {
+    from {
+        @apply top-16;
+    }
+    50% {
+        @apply -top-12;
+    }
+    to {
+        @apply top-16;
+    }
+}
+
+
+/*@keyframes apparition {*/
+/*  from {*/
+/*    transform: translateY(0);*/
+/*  }*/
+/*  50% {*/
+/*    transform: translateY(-60px);*/
+/*  }*/
+/*  to {*/
+/*    transform: translateY(0);*/
+/*  }*/
+/*}*/

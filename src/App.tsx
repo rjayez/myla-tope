@@ -1,6 +1,5 @@
 import type {Component, Signal} from 'solid-js';
 import {createEffect, createSignal, onCleanup} from "solid-js";
-import styles from './App.module.css';
 import {GameButton} from "./GameButton";
 
 const defaultButtonState = [
@@ -86,14 +85,14 @@ const App: Component = () => {
         }
     });
 
-
-    const handleGameButton = (active: boolean, buttonIndex: number) => {
+    function handleGameButton(active: boolean, buttonIndex: number) {
         if (gameActive() && active) {
             setScore(score() + 1);
             updateButtonState(false, buttonIndex);
         }
-    };
-    const resetGame = () => {
+    }
+
+    function resetGame() {
         setScore(0);
         setTimer(0);
         setButtonState(defaultButtonState);
@@ -113,7 +112,7 @@ const App: Component = () => {
 
                 </header>
             </>
-            <div class="grid grid-cols-3 w-[310px] md:w-[700px]  mx-auto gap-4 mt-10 md:mt-20 p-2" style={styles.grid}>
+            <div class="grid grid-cols-3 w-[310px] md:w-[700px]  mx-auto gap-4 mt-10 md:mt-8 p-2 content-center">
                 <GameButton active={buttonState()[0]} onClick={() => handleGameButton(buttonState()[0], 0)}/>
                 <GameButton active={buttonState()[1]} onClick={() => handleGameButton(buttonState()[1], 1)}/>
                 <GameButton active={buttonState()[2]} onClick={() => handleGameButton(buttonState()[2], 2)}/>
