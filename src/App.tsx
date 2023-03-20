@@ -24,6 +24,8 @@ const App: Component = () => {
 
     const [buttonState, setButtonState]: Signal<boolean[]> = createSignal(defaultButtonState);
 
+    const timeoutIdStore: number[] = [];
+
     function handleJouerButton() {
 
         if (!gameActive()) {
@@ -53,7 +55,7 @@ const App: Component = () => {
         let randomMylou = Math.floor(Math.random() * 9);
         if (gameActive() && !buttonState()[randomMylou]) {
             mylouAppear(randomMylou);
-            setTimeout(() => {
+            timeoutIdStore[randomMylou] = setTimeout(() => {
                 updateButtonState(false, randomMylou);
             }, 2000);
         }
@@ -89,6 +91,7 @@ const App: Component = () => {
         if (gameActive() && active) {
             setScore(score() + 1);
             updateButtonState(false, buttonIndex);
+            clearTimeout(timeoutIdStore[buttonIndex]);
         }
     }
 
