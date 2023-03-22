@@ -1,17 +1,26 @@
 import type {Component, Signal} from 'solid-js';
-import {createEffect, createSignal, onCleanup} from "solid-js";
+import {createEffect, createSignal, For, onCleanup} from "solid-js";
 import {GameButton} from "./GameButton";
 
-const defaultButtonState = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
+interface ButtonState {
+    active: boolean;
+    type: MYLOU_TYPE;
+}
+
+export type MYLOU_TYPE = "DIABLE" | "FIAK" | "ANGE";
+
+const TYPE: MYLOU_TYPE[] = ["DIABLE", "FIAK", "ANGE"]
+
+const defaultButtonState: ButtonState[] = [
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"},
+    {active: false, type: "DIABLE"}
 ];
 
 const GAME_TIME_SECONDS = 30;
@@ -22,9 +31,10 @@ const App: Component = () => {
     const [timer, setTimer]: Signal<number> = createSignal(0);
     const [gameInterval, setGameInterval]: Signal<number> = createSignal(0);
 
-    const [buttonState, setButtonState]: Signal<boolean[]> = createSignal(defaultButtonState);
+    const [buttonState, setButtonState]: Signal<ButtonState[]> = createSignal(defaultButtonState);
 
     const timeoutIdStore: number[] = [];
+
 
     function handleJouerButton() {
 
@@ -39,10 +49,8 @@ const App: Component = () => {
     }
 
     function launchGame() {
-
         const randomDuration = Math.floor((Math.random() * 1000) + 500);
         showUpMylou();
-
         return setInterval(() => {
             setTimer(timer() + 1);
             setTimeout(() => {
@@ -52,25 +60,27 @@ const App: Component = () => {
     }
 
     function showUpMylou() {
-        let randomMylou = Math.floor(Math.random() * 9);
-        if (gameActive() && !buttonState()[randomMylou]) {
-            mylouAppear(randomMylou);
+        const randomMylou = Math.floor(Math.random() * 9);
+        const randomType = Math.floor(Math.random() * 3);
+        if (gameActive() && !buttonState()[randomMylou].active) {
+            //Apparition
+            updateButtonState(true, TYPE[randomType], randomMylou);
             timeoutIdStore[randomMylou] = setTimeout(() => {
-                updateButtonState(false, randomMylou);
+                // Disparition
+                updateButtonState(false, TYPE[randomType], randomMylou);
             }, 2000);
         }
     }
 
-    function updateButtonState(active: boolean, buttonIndex: number) {
-        const tempButtonState = [...buttonState()];
-        tempButtonState[buttonIndex] = active;
-        setButtonState(tempButtonState);
-    }
+    // TODO Relocaliser le state au niveau du bouton
+    function updateButtonState(active: boolean, type: MYLOU_TYPE | undefined, buttonIndex: number) {
+        let tempButtonState = [...buttonState()];
+        tempButtonState[buttonIndex] = {
+            active: active,
+            type: type ?? "DIABLE"
+        };
 
-    function mylouAppear(randomNumber: number) {
-        if (gameActive()) {
-            updateButtonState(true, randomNumber);
-        }
+        setButtonState(tempButtonState);
     }
 
     onCleanup(() => {
@@ -87,10 +97,10 @@ const App: Component = () => {
         }
     });
 
-    function handleGameButton(active: boolean, buttonIndex: number) {
+    function handleGameButton(active: boolean, buttonIndex: number, point: number) {
         if (gameActive() && active) {
-            setScore(score() + 1);
-            updateButtonState(false, buttonIndex);
+            setScore(prev => prev + point);
+            updateButtonState(false, undefined, buttonIndex);
             clearTimeout(timeoutIdStore[buttonIndex]);
         }
     }
@@ -116,15 +126,13 @@ const App: Component = () => {
                 </header>
             </>
             <div class="grid grid-cols-3 w-[310px] md:w-[700px]  mx-auto gap-4 mt-10 md:mt-8 p-2 content-center">
-                <GameButton active={buttonState()[0]} onClick={() => handleGameButton(buttonState()[0], 0)}/>
-                <GameButton active={buttonState()[1]} onClick={() => handleGameButton(buttonState()[1], 1)}/>
-                <GameButton active={buttonState()[2]} onClick={() => handleGameButton(buttonState()[2], 2)}/>
-                <GameButton active={buttonState()[3]} onClick={() => handleGameButton(buttonState()[3], 3)}/>
-                <GameButton active={buttonState()[4]} onClick={() => handleGameButton(buttonState()[4], 4)}/>
-                <GameButton active={buttonState()[5]} onClick={() => handleGameButton(buttonState()[5], 5)}/>
-                <GameButton active={buttonState()[6]} onClick={() => handleGameButton(buttonState()[6], 6)}/>
-                <GameButton active={buttonState()[7]} onClick={() => handleGameButton(buttonState()[7], 7)}/>
-                <GameButton active={buttonState()[8]} onClick={() => handleGameButton(buttonState()[8], 8)}/>
+                {/*TODO Mettre boucle for*/}
+                <For each={buttonState()}>
+                    {(buttonState, index) =>
+                        <GameButton active={buttonState.active}
+                                    onClick={point => handleGameButton(buttonState.active, index(), point)}
+                                    type={buttonState.type}/>}
+                </For>
             </div>
         </>
     );
