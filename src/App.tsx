@@ -9,7 +9,7 @@ interface ButtonState {
 
 export type MYLOU_TYPE = "DIABLE" | "FIAK" | "ANGE";
 
-const TYPE: MYLOU_TYPE[] = ["DIABLE", "FIAK", "ANGE"]
+const TYPE: MYLOU_TYPE[] = ["DIABLE", "ANGE", "FIAK"]
 
 const defaultButtonState: ButtonState[] = [
     {active: false, type: "DIABLE"},
@@ -34,7 +34,6 @@ const App: Component = () => {
     const [buttonState, setButtonState]: Signal<ButtonState[]> = createSignal(defaultButtonState);
 
     const timeoutIdStore: number[] = [];
-
 
     function handleJouerButton() {
 
@@ -61,13 +60,18 @@ const App: Component = () => {
 
     function showUpMylou() {
         const randomMylou = Math.floor(Math.random() * 9);
-        const randomType = Math.floor(Math.random() * 3);
+        const randomType = Math.floor(Math.random() * 2);
+        let mylouType = TYPE[randomType];
+        if ((timer()+1) % 5 === 0){
+            mylouType = "FIAK";
+        }
+
         if (gameActive() && !buttonState()[randomMylou].active) {
             //Apparition
-            updateButtonState(true, TYPE[randomType], randomMylou);
+            updateButtonState(true, mylouType, randomMylou);
             timeoutIdStore[randomMylou] = setTimeout(() => {
                 // Disparition
-                updateButtonState(false, TYPE[randomType], randomMylou);
+                updateButtonState(false, mylouType, randomMylou);
             }, 2000);
         }
     }
