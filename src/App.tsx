@@ -1,6 +1,7 @@
 import type {Component, Signal} from 'solid-js';
 import {createEffect, createSignal, For, onCleanup} from "solid-js";
 import {GameButton} from "./GameButton";
+import {Modal} from "./Modal";
 
 interface ButtonState {
     active: boolean;
@@ -30,8 +31,10 @@ const App: Component = () => {
     const [score, setScore]: Signal<number> = createSignal(0);
     const [timer, setTimer]: Signal<number> = createSignal(0);
     const [gameInterval, setGameInterval]: Signal<number> = createSignal(0);
+    const [isOpen, setIsOpen]: Signal<boolean>  = createSignal(false);
 
     const [buttonState, setButtonState]: Signal<ButtonState[]> = createSignal(defaultButtonState);
+
 
     const timeoutIdStore: number[] = [];
 
@@ -48,6 +51,7 @@ const App: Component = () => {
     }
 
     function launchGame() {
+        setScore(0);
         const randomDuration = Math.floor((Math.random() * 1000) + 500);
         showUpMylou();
         return setInterval(() => {
@@ -98,6 +102,7 @@ const App: Component = () => {
             setButtonState(defaultButtonState);
             setTimer(0);
             clearInterval(gameInterval());
+            setIsOpen(true);
         }
     });
 
@@ -126,11 +131,9 @@ const App: Component = () => {
 
                     <label>Scores : {score()}</label>
                     <label>Temps : {timer()}</label>
-
                 </header>
             </>
             <div class="grid grid-cols-3 w-[310px] md:w-[700px]  mx-auto gap-4 mt-10 md:mt-8 p-2 content-center">
-                {/*TODO Mettre boucle for*/}
                 <For each={buttonState()}>
                     {(buttonState, index) =>
                         <GameButton active={buttonState.active}
@@ -138,6 +141,7 @@ const App: Component = () => {
                                     type={buttonState.type}/>}
                 </For>
             </div>
+            <Modal isOpen={isOpen()} score={score()} handleClose={() => setIsOpen(false)}/>
         </>
     );
 };
