@@ -45,6 +45,7 @@ const App: Component = () => {
             let gameInterval = launchGame();
             setGameInterval(gameInterval);
         } else {
+            clearInterval(gameInterval());
             setGameActive(false);
             setTimer(0);
         }
@@ -114,21 +115,12 @@ const App: Component = () => {
         }
     }
 
-    function resetGame() {
-        setScore(0);
-        setTimer(0);
-        setButtonState(defaultButtonState);
-        clearInterval(gameInterval());
-    }
-
     return (
         <>
             <>
                 <h1 class=" text-3xl lg:text-6xl text-center m-6 font-bold text-blue-100">Myla-Tope</h1>
                 <header class="text-center text-gray-200 space-x-2 text-xl">
                     <button onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
-                    <button onClick={resetGame}>Reset</button>
-
                     <label>Scores : {score()}</label>
                     <label>Temps : {timer()}</label>
                 </header>
