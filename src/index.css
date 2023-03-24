@@ -4,15 +4,30 @@
 @tailwind screens;
 
 @font-face {
-    font-family: Kiwi_Days;
+    font-family: KiwiDays;
     src: url("./assets/Police_Kiwi_Days.ttf");
+}
+
+@font-face {
+    font-family: CreamCake;
+    src: url("./assets/Cream_Cake.otf");
+}
+
+@font-face {
+    font-family: LondonBoutique;
+    src: url("./assets/LondonBoutique_PERSONAL_USE_ONLY.otf");
+}
+
+@font-face {
+    font-family: VanillaCaramel;
+    src: url("./assets/Vanilla Caramel.otf");
 }
 
 body {
     @apply bg-fixed bg-cover;
     background-image: url("./assets/background.png");
     margin: 0;
-    font-family: Kiwi_Days, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: VanillaCaramel, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;

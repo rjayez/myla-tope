@@ -7,6 +7,11 @@ module.exports = {
                 apparition: "apparition 2s linear infinite",
                 apparitionDesktop: "apparitionDesktop 2s linear infinite"
             },
+            fontFamily: {
+                LondonBoutique:["London_Boutique", "helvetica"],
+                CreamCake:["CreamCake", "helvetica"],
+                KiwiDay:["KiwiDays", "helvetica"]
+            }
         },
         plugins: [],
     }

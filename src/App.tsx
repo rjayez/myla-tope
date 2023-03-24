@@ -1,5 +1,5 @@
 import type {Component, Signal} from 'solid-js';
-import {createEffect, createSignal, For, onCleanup} from "solid-js";
+import {createEffect, createSignal, For, onCleanup, Show} from "solid-js";
 import {GameButton} from "./GameButton";
 import {Modal} from "./Modal";
 
@@ -118,14 +118,18 @@ const App: Component = () => {
     return (
         <>
             <>
-                <h1 class=" text-3xl lg:text-6xl text-center m-6 font-bold text-blue-100">Myla-Tope</h1>
-                <header class="text-center text-gray-200 space-x-2 text-xl">
-                    <button onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
-                    <label>Scores : {score()}</label>
-                    <label>Temps : {timer()}</label>
+                <h1 class="text-3xl lg:text-6xl text-center m-6 font-bold text-blue-100">Myla-Tope</h1>
+                <header class="px-2 text-center text-gray-200 md:space-x-8 text-2xl">
+                    <button class="border-4 p-3 rounded-2xl" onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
+                    <Show when={gameActive()} keyed={true}>
+                        <div class="space-x-8  mt-4">
+                            <label>Scores : {score()}</label>
+                            <label>Temps : {timer()}</label>
+                        </div>
+                    </Show>
                 </header>
             </>
-            <div class="grid grid-cols-3 w-[310px] md:w-[700px]  mx-auto gap-4 mt-10 md:mt-8 p-2 content-center">
+            <div class="grid grid-cols-3 w-[310px] md:w-[700px] mx-auto gap-4 mt-10 md:mt-8 p-2 content-center">
                 <For each={buttonState()}>
                     {(buttonState, index) =>
                         <GameButton active={buttonState.active}
