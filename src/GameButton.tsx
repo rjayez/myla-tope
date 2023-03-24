@@ -24,10 +24,10 @@ export function GameButton(props: { active: boolean, onClick: (point: number) =>
                    classList={{buttonActive: props.active}}
                    onClick={() => props.onClick(MYLOU_TYPE[props.type].point)}>
         <div
-            class={`relative h-[90px] md:h-[150px] w-[70px] md:w-[180px] top-7 md:top-16 -z-10 bg-contain bg-center bg-no-repeat mx-auto ${MYLOU_TYPE[props.type].bgClass}`}
+            class={`relative h-[90px] md:h-[150px] w-[70px] md:w-[180px] top-7 md:top-[3.5rem] -z-10 bg-contain bg-center bg-no-repeat mx-auto ${MYLOU_TYPE[props.type].bgClass}`}
             classList={{"animate-apparition": props.active, "md:animate-apparitionDesktop": props.active}}/>
         <div
-            class="relative h-[110px] md:h-[200px] md:w-[180px] top-36 md:top-28 bg-center bg-no-repeat bg-[url('./assets/nuage.png')]
-            -translate-y-[210px] bg-contain  mx-auto"/>
+            class="relative h-[110px] md:h-[200px] md:w-[180px] top-36 md:top-24 bg-center bg-no-repeat bg-[url('./assets/nuage.png')]
+            -translate-y-[210px] bg-contain mx-auto"/>
     </button>;
 }

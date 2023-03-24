@@ -15,25 +15,19 @@ body {
 }
 
 @keyframes apparition {
-    from {
+    from, to {
         @apply top-7;
     }
     50% {
         @apply -top-6;
     }
-    to {
-        @apply top-7;
-    }
 }
 
 @keyframes apparitionDesktop {
-    from {
-        @apply top-16;
+    from, to {
+        @apply top-[3.5rem];
     }
     50% {
-        @apply -top-12;
-    }
-    to {
-        @apply top-16;
+        @apply -top-11;
     }
 }
