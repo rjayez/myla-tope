@@ -16,13 +16,13 @@ export function Modal(props: { isOpen: boolean, score: number, handleClose: Func
                                 <div class="bg-white px-4 pb-4 sm:p-6 sm:pb-4">
                                     <div class="sm:flex sm:items-start">
                                         <div
-                                            class="mx-auto sm:fixed bg-[url('./assets/mylou_ange.png')] bg-contain flex h-24 w-24  flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-36 sm:w-36">
+                                            class="mx-auto sm:fixed bg-[url('./assets/mylou_merci.png')] bg-contain flex h-24 w-24  flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-36 sm:w-36">
                                         </div>
                                         <div class="mt-3 text-center sm:mt-0 sm:mx-auto sm:text-left sm:h-32">
                                             <div class="my-auto">
-                                                <h3 class="text-base font-semibold leading-6 text-gray-900 sm:text-center sm:text-3xl"
+                                                <h3 class="text-base font-semibold leading-6 text-gray-900 sm:text-center sm:pt-3 sm:text-3xl"
                                                     id="modal-title">Merci d'avoir joué 💙</h3>
-                                                <div class="mt-2">
+                                                <div class="mt-4">
                                                     <p class="text-sm sm:text-xl text-gray-500">Vous avez faire un score
                                                         de <strong>{props.score}</strong> points !</p>
                                                 </div>
