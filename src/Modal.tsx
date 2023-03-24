@@ -21,7 +21,7 @@ export function Modal(props: { isOpen: boolean, score: number, handleClose: Func
                                         <div class="mt-3 text-center sm:mt-0 sm:mx-auto sm:text-left sm:h-32">
                                             <div class="my-auto">
                                                 <h3 class="text-base font-semibold leading-6 text-gray-900 sm:text-center sm:pt-3 sm:text-3xl"
-                                                    id="modal-title">Merci d'avoir joué 💙</h3>
+                                                    id="modal-title">Merci d'avoir joue 💙</h3>
                                                 <div class="mt-4">
                                                     <p class="text-sm sm:text-xl text-gray-500">Vous avez faire un score
                                                         de <strong>{props.score}</strong> points !</p>

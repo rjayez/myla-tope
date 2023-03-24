@@ -3,11 +3,16 @@
 @tailwind utilities;
 @tailwind screens;
 
+@font-face {
+    font-family: Kiwi_Days;
+    src: url("./assets/Police_Kiwi_Days.ttf");
+}
+
 body {
     @apply bg-fixed bg-cover;
     background-image: url("./assets/background.png");
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: Kiwi_Days, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
