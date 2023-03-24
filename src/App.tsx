@@ -24,7 +24,7 @@ const defaultButtonState: ButtonState[] = [
     {active: false, type: "DIABLE"}
 ];
 
-const GAME_TIME_SECONDS = 30;
+const GAME_TIME_SECONDS = 60;
 
 const App: Component = () => {
     const [gameActive, setGameActive]: Signal<boolean> = createSignal(false);
