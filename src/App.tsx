@@ -48,6 +48,7 @@ const App: Component = () => {
             setTimerInterval(timerInterval);
         } else {
             clearInterval(gameInterval());
+            clearInterval(timerInterval());
             setGameActive(false);
             setTimer(0);
         }
