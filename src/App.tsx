@@ -31,7 +31,8 @@ const App: Component = () => {
     const [score, setScore]: Signal<number> = createSignal(0);
     const [timer, setTimer]: Signal<number> = createSignal(0);
     const [gameInterval, setGameInterval]: Signal<number> = createSignal(0);
-    const [isOpen, setIsOpen]: Signal<boolean>  = createSignal(false);
+    const [timerInterval, setTimerInterval]: Signal<number> = createSignal(0);
+    const [isOpen, setIsOpen]: Signal<boolean> = createSignal(false);
 
     const [buttonState, setButtonState]: Signal<ButtonState[]> = createSignal(defaultButtonState);
 
@@ -42,8 +43,9 @@ const App: Component = () => {
 
         if (!gameActive()) {
             setGameActive(true);
-            let gameInterval = launchGame();
+            let {timerInterval, gameInterval} = launchGame();
             setGameInterval(gameInterval);
+            setTimerInterval(timerInterval);
         } else {
             clearInterval(gameInterval());
             setGameActive(false);
@@ -55,19 +57,20 @@ const App: Component = () => {
         setScore(0);
         const randomDuration = Math.floor((Math.random() * 1000) + 500);
         showUpMylou();
-        return setInterval(() => {
-            setTimer(timer() + 1);
+        let timerInterval = setInterval(() => setTimer(prev => prev + 1), 1000);
+        let gameInterval = setInterval(() => {
             setTimeout(() => {
                 showUpMylou();
             }, randomDuration);
         }, 800);
+        return {timerInterval, gameInterval};
     }
 
     function showUpMylou() {
         const randomMylou = Math.floor(Math.random() * 9);
         const randomType = Math.floor(Math.random() * 2);
         let mylouType = TYPE[randomType];
-        if ((timer()+1) % 5 === 0){
+        if ((timer() + 1) % 5 === 0) {
             mylouType = "FIAK";
         }
 
@@ -94,6 +97,7 @@ const App: Component = () => {
 
     onCleanup(() => {
         clearInterval(gameInterval());
+        clearInterval(timerInterval());
     });
 
     createEffect(() => {
@@ -103,6 +107,7 @@ const App: Component = () => {
             setButtonState(defaultButtonState);
             setTimer(0);
             clearInterval(gameInterval());
+            clearInterval(timerInterval());
             setIsOpen(true);
         }
     });
@@ -120,11 +125,12 @@ const App: Component = () => {
             <>
                 <h1 class="text-3xl lg:text-6xl text-center m-6 font-bold text-blue-100">Myla-Tope</h1>
                 <header class="px-2 text-center text-gray-200 md:space-x-8 text-2xl">
-                    <button class="border-4 p-3 rounded-2xl" onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
+                    <button class="border-4 p-3 rounded-2xl"
+                            onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
                     <Show when={gameActive()} keyed={true}>
                         <div class="space-x-8  mt-4">
                             <label>Scores : {score()}</label>
-                            <label>Temps : {timer()}</label>
+                            <label>Temps : {Math.floor(timer())}</label>
                         </div>
                     </Show>
                 </header>
