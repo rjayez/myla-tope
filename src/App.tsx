@@ -50,6 +50,7 @@ const App: Component = () => {
             clearInterval(gameInterval());
             clearInterval(timerInterval());
             setGameActive(false);
+            setButtonState(defaultButtonState);
             setTimer(0);
         }
     }
