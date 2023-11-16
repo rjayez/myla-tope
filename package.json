@@ -10,16 +10,18 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/animejs": "^3.1.8",
     "autoprefixer": "^10.4.14",
     "pnpm": "^7.29.3",
     "postcss": "^8.4.21",
     "solid-devtools": "^0.26.0",
     "tailwindcss": "^3.2.7",
     "typescript": "^4.9.5",
-    "vite": "^4.1.1",
+    "vite": "^4.4.10",
     "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "solid-js": "^1.6.10"
   }
 }
