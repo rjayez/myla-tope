@@ -26,7 +26,7 @@ const defaultButtonState: ButtonState[] = [
 ];
 
 const GAME_TIME_SECONDS = 60;
-const INITIAL_MYLOU_COUNT = 70;
+const INITIAL_MYLOU_COUNT = 72;
 
 
 
@@ -61,6 +61,8 @@ const App: Component = () => {
             setGameActive(false);
             setButtonState(defaultButtonState);
             setTimer(0);
+            setDifficultyIndex(0);
+            setApparitionTime(2000);
         }
     }
 
@@ -106,6 +108,7 @@ const App: Component = () => {
         if (gameActive() && !buttonState()[randomMylou].active) {
             //Apparition
             updateButtonState(true, mylouType, randomMylou);
+            console.debug(apparitionTime());
             animationMylou(apparitionTime(), randomMylou);
 
             timeoutIdStore[randomMylou] = setTimeout(() => {
