@@ -3,6 +3,7 @@ import {createEffect, createSignal, For, onCleanup, Show} from "solid-js";
 import {GameButton} from "./GameButton";
 import {Modal} from "./Modal";
 import anime from "animejs";
+import {ModalRules} from "./ModalRules";
 
 interface ButtonState {
     active: boolean;
@@ -37,6 +38,7 @@ const App: Component = () => {
     const [gameInterval, setGameInterval]: Signal<number> = createSignal(0);
     const [timerInterval, setTimerInterval]: Signal<number> = createSignal(0);
     const [isOpen, setIsOpen]: Signal<boolean> = createSignal(false);
+    const [ruleIsOpen, setRuleIsOpen]: Signal<boolean> = createSignal(false);
     const [mylouRemaining, setMylouRemaining]: Signal<number> = createSignal(INITIAL_MYLOU_COUNT);
     const [difficultyIndex, setDifficultyIndex] = createSignal(0);
     const [apparitionTime, setApparitionTime] = createSignal(2000);
@@ -64,6 +66,10 @@ const App: Component = () => {
             setDifficultyIndex(0);
             setApparitionTime(2000);
         }
+    }
+
+    function handleButtonRules() {
+        setRuleIsOpen(true);
     }
 
     function launchGame() {
@@ -154,6 +160,8 @@ const App: Component = () => {
         }
     }
 
+    //TODO afficher automatique la modale des règles pour une première
+
 
     return (
         <>
@@ -162,6 +170,8 @@ const App: Component = () => {
                 <header class="px-2 text-center text-gray-200 md:space-x-8 text-2xl">
                     <button class="border-4 p-3 rounded-2xl"
                             onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
+                    <button class="border-4 p-3 rounded-2xl"
+                            onClick={() => handleButtonRules()}>Règles</button>
                     {/*<span>[DEBUG] Remaining : {mylouRemaining()}  DifficultyIndex : {difficultyIndex()}</span>*/}
                     <Show when={gameActive()} keyed={true}>
                         <div class="space-x-8  mt-4">
@@ -182,6 +192,7 @@ const App: Component = () => {
                 </For>
             </div>
             <Modal isOpen={isOpen()} score={score()} handleClose={() => setIsOpen(false)}/>
+            <ModalRules isOpen={ruleIsOpen()} handleClose={() => setRuleIsOpen(false)}/>
         </>
     );
 };
