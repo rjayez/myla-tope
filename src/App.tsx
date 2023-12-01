@@ -172,14 +172,16 @@ const App: Component = () => {
         <>
             <>
                 <h1 class="text-3xl lg:text-6xl text-center m-6 font-bold text-blue-100">Myla-Tope</h1>
-                <header class="px-2 text-center text-gray-200 space-x-4 md:space-x-8  text-2xl">
+                <header class="px-2 text-center text-gray-200  text-2xl">
+                    <div class="space-x-4 md:space-x-8">
                     <button class="border-4 p-3 rounded-2xl"
                             onClick={() => handleJouerButton()}>{gameActive() ? "Stop" : "Jouer"}</button>
                     <button class="border-4 p-3 rounded-2xl"
                             onClick={() => handleButtonRules()}>Règles</button>
+                    </div>
                     {/*<span>[DEBUG] Remaining : {mylouRemaining()}  DifficultyIndex : {difficultyIndex()}</span>*/}
-                    <Show when={gameActive()} keyed={true}>
-                        <div class="space-x-8  mt-4">
+                    <Show when={gameActive()} keyed={true} fallback={<div class="h-12"/>}>
+                        <div class="space-x-4 md:space-x-8 mt-4">
                             <label>Scores : {score()}</label>
                             <label>Temps : {Math.floor(timer())}</label>
                         </div>
