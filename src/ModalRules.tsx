@@ -22,23 +22,23 @@ export function ModalRules(props: { isOpen: boolean, handleClose: Function }) {
                                             </h3>
                                         </div>
                                     <div class="grid sm:grid-cols-2">
-                                        <div class="text-center text-xl mx-2 sm:mt-4 p-4 border-2 rounded-2xl">
-                                            <h4 class="my-6 text-2xl underline">LÉGENDE</h4>
+                                        <div class="text-center sm:text-xl mx-2 sm:mt-4 p-4 border-2 rounded-2xl">
+                                            <h4 class="my-2 sm:my-6 sm:text-2xl underline">LÉGENDE</h4>
                                             <p>Il était une fois dans le ciel...
                                                 <br/>
                                                 Un monde magique rempli de Mylous !
                                                 <br/>
                                                 Mais derrière les nuages se cachent parfois des intrus...
                                             </p>
-                                            <p class="my-5">
+                                            <p class="my-2 sm:my-5">
                                                 Viens nous aider à les chasser sans blesser les gentils Mylous !
                                             </p>
                                         </div>
 
-                                        <div class="flex flex-col mt-4 mx-auto ">
-                                            <div class="flex flex-row my-1 place-self-start ">
+                                        <div class="flex flex-col mx-auto sm:mt-4 ">
+                                            <div class="flex flex-col sm:flex-row my-1 place-self-center sm:place-self-end">
                                                 <div
-                                                    class="bg-[url('./assets/mylou_diable.png')]  bg-contain sm:h-20 sm:w-20"/>
+                                                    class="bg-[url('./assets/mylou_diable.png')] bg-contain mx-auto h-16 w-16 sm:h-20 sm:w-20"/>
                                                 <p class=" bg-blue-950 bg-opacity-95 p-3 rounded-md mx-5 text-center">
                                                     <span class="underline">Le Méchant Mylou</span> :
                                                     <br/>
@@ -47,7 +47,7 @@ export function ModalRules(props: { isOpen: boolean, handleClose: Function }) {
                                                 </p>
 
                                             </div>
-                                            <div class="flex flex-row my-1 col-end-auto place-self-end  ">
+                                            <div class="flex flex-col-reverse sm:flex-row my-1 col-end-auto place-self-center sm:place-self-end  ">
 
                                                 <p class=" bg-blue-950 bg-opacity-95 p-3 rounded-md mx-5 text-center">
                                                     <span class="underline text-lg">Le Gentil Mylou</span> :
@@ -56,11 +56,11 @@ export function ModalRules(props: { isOpen: boolean, handleClose: Function }) {
                                                     class="text-red-700">3 points </span>!
                                                 </p>
                                                 <div
-                                                    class="bg-[url('./assets/mylou_ange.png')]  bg-contain sm:h-20 sm:w-20"/>
+                                                    class="bg-[url('./assets/mylou_ange.png')] mx-auto bg-contain h-16 w-16 sm:h-20 sm:w-20"/>
                                             </div>
-                                            <div class="flex flex-row my-1 place-self-start">
+                                            <div class="flex sm:flex-row flex-col my-1 place-self-center sm:place-self-end">
                                                 <div
-                                                    class="bg-[url('./assets/mylou_fiak.png')]  bg-contain sm:h-20 sm:w-20"/>
+                                                    class="bg-[url('./assets/mylou_fiak.png')] mx-auto bg-contain h-16 w-16 sm:h-20 sm:w-20"/>
                                                 <p class="bg-blue-950 bg-opacity-95 p-3 rounded-md mx-5 align-middle text-center">
                                                     <span class="underline">Le Mylou Fiak</span> :
                                                     <br/>
