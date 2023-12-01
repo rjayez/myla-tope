@@ -1,9 +1,10 @@
 import type {Component, Signal} from 'solid-js';
-import {createEffect, createSignal, For, onCleanup, Show} from "solid-js";
+import {createEffect, createSignal, For, onCleanup, onMount, Show} from "solid-js";
 import {GameButton} from "./GameButton";
 import {Modal} from "./Modal";
 import anime from "animejs";
 import {ModalRules} from "./ModalRules";
+import {checkRulesAlreadySeen} from "./service/service";
 
 interface ButtonState {
     active: boolean;
@@ -152,6 +153,12 @@ const App: Component = () => {
         }
     });
 
+    onMount(() => {
+        if (!checkRulesAlreadySeen()){
+            setRuleIsOpen(true);
+        }
+    })
+
     function handleGameButton(active: boolean, buttonIndex: number, point: number) {
         if (gameActive() && active) {
             setScore(prev => prev + point);
@@ -159,8 +166,6 @@ const App: Component = () => {
             clearTimeout(timeoutIdStore[buttonIndex]);
         }
     }
-
-    //TODO afficher automatique la modale des règles pour une première
 
 
     return (
